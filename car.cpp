@@ -5,3 +5,22 @@
 #include <cstddef>
 #include <cstring>
 // #include .......
+//
+//
+//
+using namespace std;
+
+
+int main(){
+
+car ferrari;
+
+return 0;
+
+
+
+
+
+
+
+}
