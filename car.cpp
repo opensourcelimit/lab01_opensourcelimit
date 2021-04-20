@@ -39,7 +39,11 @@ Car::Car(char const* const manufacturerName, char const* const modelName, Perfor
 
         Car::Car(Car const& o)
         {
-          manufacturerChange(o.getManufacturer());
+         
+         manufacturer = new char[20];
+
+         model = new char[20]
+         manufacturerChange(o.getManufacturer());
           
           modelNameChange(o.getModel());
           
