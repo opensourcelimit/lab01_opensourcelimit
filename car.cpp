@@ -4,29 +4,26 @@
 #include "car.hpp"
 #include <cstddef>
 #include <cstring>
-#include <iostream>
+
 using namespace std;
 // #include .......
 
 Car::Car(): manufacturer(nullptr), model(nullptr), zeroToSixtyNs(0), headonDragCoeff(0), horsepower(0), backseatDoors(None),seatCount(0){}
 
-/*Car::Car(char const* const manufacturerName, char const* const modelName, PerformanceStats perf, uint8_t numSeats, DoorKind backseatDoorDesign)
+Car::Car(char const* const manufacturerName, char const* const modelName, PerformanceStats perf, uint8_t numSeats, DoorKind backseatDoorDesign)
 { 
-    manufacturer = new char;
-    manufactuerer = nullptr;
+   
+   
 
     manufacturerChange( manufacturerName);
-
-    model = new char;
-    model = nullptr;
-    
+   
     modelNameChange(modelName);
 
     reevaluateStats( perf);
     
     recountSeats( numSeats);
     
-    reecamineDoors(backseatDoorDesign);
+    reexamineDoors(backseatDoorDesign);
 
 
     
@@ -39,25 +36,35 @@ Car::Car(): manufacturer(nullptr), model(nullptr), zeroToSixtyNs(0), headonDragC
 
 }
 
-        Car::Car(Car const& o){
-            
-            }
+        Car::Car(Car const& o)
+        {
+          manufacturer = nullptr;
+          model = nullptr;
+          manufacturerChange(o.getManufacturer());
+          
+          modelChange(o.getmodel());
+          
+          PerformanceStats tempstats = o.getStats();
+          reevaluateStats(tempstats.horsepower, tempstats.zeroToSixtyNs, tempstats.headonDragCoeff);
+          
+          recountSeats(o.getSeatCount());
+          
+          }
 
 
         Car::Car& operator=(Car const& o){}
         Car::~Car(){}
-        */
-       // char const* Car:: getManufacturer() const { return manufacturer;}
+        
+        char const* Car:: getManufacturer() const { return manufacturer;}
        
        
-
+      
        char const* Car::getModel() const {return model; }
        
-/*
-       PerformanceStats Car::getStats() const {
-            PerformanceStats dummy{zeroToSixtyNs,headonDragCoeff,horsepower};
-            return dummy;
 
+       PerformanceStats Car::getStats() const {
+           PerformanceStats dummy{horsepower,zeroToSixtyNs,headonDragCoeff};
+            return dummy;
             }
        
 
@@ -67,19 +74,30 @@ Car::Car(): manufacturer(nullptr), model(nullptr), zeroToSixtyNs(0), headonDragC
        DoorKind Car::getBackseatDoors() const {
             DoorKind dummy;
             switch(backseatDoors){
-            case 0: Doorkind = None;
-            case 1: Doorkind = Hinged;
-            case 2: Doorkind = GullWing;
-            case 3: Doorking = Sliding;
-
+            case 0:
+                 dummy = None;
+                 break;  
+            case 1:
+                 dummy = Hinge;
+                 break;
+            case 2:
+                 dummy = GullWing;
+                 break;
+            case 3:
+                 dummy = Sliding;
+                 break;
+    
             }
             return dummy;
             }
         void Car::manufacturerChange(char const* const newManufacturer) {
- 
-           strycpy(manufacturer, newManufacturer);
+                if(model == nullptr){
+                manufacturer = new char;
             }
-  */     
+             
+           strcpy(manufacturer, newManufacturer);
+            }
+       
 
        void Car::modelNameChange(char const* const newModelName) {
             if(model == nullptr){
@@ -88,11 +106,11 @@ Car::Car(): manufacturer(nullptr), model(nullptr), zeroToSixtyNs(0), headonDragC
             strcpy(model, newModelName);
             }
        
-/*
+
        void Car::reevaluateStats(PerformanceStats newStats) {
             zeroToSixtyNs = newStats.zeroToSixtyNs;
-            headonDragCoeff = newstats.headonDragCoeff;
-            horsepower = newstats.horsepower;
+            headonDragCoeff = newStats.headonDragCoeff;
+            horsepower = newStats.horsepower;
 
             }
        
@@ -104,18 +122,22 @@ Car::Car(): manufacturer(nullptr), model(nullptr), zeroToSixtyNs(0), headonDragC
 
        void Car::reexamineDoors(DoorKind newDoorKind){
 
-            switch(backseatDoorDesign){
+            switch(newDoorKind){
             case 0 : backseatDoors = None;
-            case 1 : backseatDoors = Hinged;
+                    break;
+            case 1 : backseatDoors = Hinge;
+                    break;
             case 2 : backseatDoors = GullWing;
+                    break;
             case 3 : backseatDoors = Sliding;
-
-
-            }
-
-
+                    break;
+                }
 
             }
 
 
-            */
+
+            
+
+
+           

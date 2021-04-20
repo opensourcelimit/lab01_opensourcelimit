@@ -15,20 +15,20 @@ class Car{
         uint8_t seatCount;
     public:
         Car();
-        //Car(char const* const manufacturerName, char const* const modelName, PerformanceStats perf, uint8_t numSeats, DoorKind backseatDoorDesign);
+       // Car(char const* const manufacturerName, char const* const modelName, PerformanceStats perf, uint8_t numSeats, DoorKind backseatDoorDesign);
        // Car(Car const& o);
        // Car& operator=(Car const& o);
       //  ~Car();
-       // char const* getManufacturer() const;
+        char const* getManufacturer() const;
         char const* getModel() const;
-       // PerformanceStats getStats() const;
-       // uint8_t getSeatCount() const;
-       // DoorKind getBackseatDoors() const;
-       // void manufacturerChange(char const* const newManufacturer);
+        PerformanceStats getStats() const;
+        uint8_t getSeatCount() const;
+        DoorKind getBackseatDoors() const;
+        void manufacturerChange(char const* const newManufacturer);
        void modelNameChange(char const* const newModelName);
-       // void reevaluateStats(PerformanceStats newStats);
-       // void recountSeats(uint8_t newSeatCount);
-       // void reexamineDoors(DoorKind newDoorKind);
+        void reevaluateStats(PerformanceStats newStats);
+        void recountSeats(uint8_t newSeatCount);
+        void reexamineDoors(DoorKind newDoorKind);
 };
 
 
