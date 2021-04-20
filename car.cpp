@@ -50,7 +50,7 @@ Car::Car(char const* const manufacturerName, char const* const modelName, Perfor
           
           reexamineDoors(o.getBackseatDoors());
           
-          seatCount = o.seatCount;
+          
           }
 
 
