@@ -13,7 +13,8 @@ Car::Car(): manufacturer(nullptr), model(nullptr), zeroToSixtyNs(0), headonDragC
 Car::Car(char const* const manufacturerName, char const* const modelName, PerformanceStats perf, uint8_t numSeats, DoorKind backseatDoorDesign)
 { 
    
-   
+    manufacturer = new char[20];
+    model = new char[20];
 
     manufacturerChange( manufacturerName);
    
@@ -38,22 +39,38 @@ Car::Car(char const* const manufacturerName, char const* const modelName, Perfor
 
         Car::Car(Car const& o)
         {
-          manufacturer = nullptr;
-          model = nullptr;
           manufacturerChange(o.getManufacturer());
           
-          modelChange(o.getmodel());
+          modelNameChange(o.getModel());
           
-          PerformanceStats tempstats = o.getStats();
-          reevaluateStats(tempstats.horsepower, tempstats.zeroToSixtyNs, tempstats.headonDragCoeff);
+        
+          reevaluateStats(o.getStats());
           
           recountSeats(o.getSeatCount());
           
+          reexamineDoors(o.getBackseatDoors());
+          
+          seatCount = o.seatCount;
           }
 
 
-        Car::Car& operator=(Car const& o){}
-        Car::~Car(){}
+        Car& Car::operator=(Car const& o){
+
+
+            }
+        
+            
+
+
+        Car::~Car(){
+            if(model){delete model;}
+            if(manufacturer){delete manufacturer;}
+        
+
+
+
+
+            }
         
         char const* Car:: getManufacturer() const { return manufacturer;}
        
@@ -91,19 +108,38 @@ Car::Car(char const* const manufacturerName, char const* const modelName, Perfor
             return dummy;
             }
         void Car::manufacturerChange(char const* const newManufacturer) {
-                if(model == nullptr){
-                manufacturer = new char;
-            }
+                if(manufacturer != nullptr && newManufacturer == nullptr ){
+                    delete[] manufacturer;
+                    model = nullptr;
+                }
+                else if(manufacturer != nullptr && newManufacturer != nullptr){
+                    strcpy(manufacturer,newManufacturer);
+                }
+                else if( manufacturer == nullptr && newManufacturer != nullptr){
+                    manufacturer = new char[20];
+                    strcpy( manufacturer , newManufacturer);
+                }
+                else{}
+
              
-           strcpy(manufacturer, newManufacturer);
+          
             }
        
 
        void Car::modelNameChange(char const* const newModelName) {
-            if(model == nullptr){
-               model = new char;
+            if(model != nullptr && newModelName == nullptr){
+               delete[] model;
+               model = nullptr;
                 }
-            strcpy(model, newModelName);
+            else if( model != nullptr && newModelName != nullptr){
+               strcpy(model, newModelName);
+                }
+            else if( model == nullptr && newModelName != nullptr){
+                model = new char[20];
+                strcpy(model , newModelName);
+               
+                }
+                else {}
             }
        
 

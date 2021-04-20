@@ -15,10 +15,10 @@ class Car{
         uint8_t seatCount;
     public:
         Car();
-       // Car(char const* const manufacturerName, char const* const modelName, PerformanceStats perf, uint8_t numSeats, DoorKind backseatDoorDesign);
-       // Car(Car const& o);
-       // Car& operator=(Car const& o);
-      //  ~Car();
+        Car(char const* const manufacturerName, char const* const modelName, PerformanceStats perf, uint8_t numSeats, DoorKind backseatDoorDesign);
+        Car(Car const& o);
+        Car& operator=(Car const& o);
+        ~Car();
         char const* getManufacturer() const;
         char const* getModel() const;
         PerformanceStats getStats() const;
