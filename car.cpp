@@ -63,8 +63,8 @@ Car::Car(char const* const manufacturerName, char const* const modelName, Perfor
 
 
         Car::~Car(){
-            if(model){delete model;}
-            if(manufacturer){delete manufacturer;}
+          if(model != nullptr) { delete model;}
+          if (manufacturer != nullptr) { delete manufacturer;}
         
 
 
